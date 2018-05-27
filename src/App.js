@@ -7,11 +7,20 @@ class App extends Component {
 
   constructor(props) {
     super(props);
-    this.state = { user: {} }
+    this.state = { user: null }
   }
 
   getUserInformation() {
-    /*
+    
+	fetch('https://api.github.com/users/rupedgo')  
+	 .then(response => response.json())  
+	.then(data => {
+		this.setState({user: data})
+	})
+	  
+}
+	  
+	/*
       TODO: fetch a user from the GitHub API
 
       TIPS:
@@ -19,27 +28,27 @@ class App extends Component {
          fetching resources (including across the network).
        2) Maybe you want to update the state here.
     */
-  }
+  
 
   render() {
     return (
       <div className="App">
         <div className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
+          <img src={logo} className="App-logo" alt="logo"/>
           <h2>Welcome to React</h2>
         </div>
         <p className="App-intro">
-          To get started, edit <code>src/App.js</code> and save to reload.
+		<code>src/App.js</code>
         </p>
         <div className="App-intro">
           <hr />
           <p>Click on the button to fetch the user information</p>
-          <button onClick={this.getUserInformation.bind(this)}>
+          <button onclick="this.getUserInformation.bind()">
             Click me
           </button>
-        </div>
-        <UserInformation />
-      </div>
+		</div>
+        <UserInformation info={this.state.user} />
+       </div>
     );
   }
 }
